@@ -62,6 +62,10 @@ thumbnails = {
     'pp': 'Pascal',
 }
 
+remap_ext = {
+    'tsx': 'ts',
+}
+
 
 def get_filename():
     return vim.eval('expand("%:t")')
@@ -76,7 +80,6 @@ def get_cwd():
         return vim.eval('getcwd()')
     else:
         return vim.eval('getcwd()').split('/')[-1]
-
 
 def update_presence(connection):
     if rpc.connection_closed:
@@ -95,7 +98,10 @@ def update_presence(connection):
 
     extension = get_extension()
     if extension and extension in thumbnails.keys():
-        activity['assets']['large_image'] = extension
+        if extension in remap_ext.keys():
+            activity['assets']['large_image'] = remap_ext[extension]
+        else:
+            activity['assets']['large_image'] = extension
         activity['assets']['large_text'] = \
             'Editing a {} file'.format(thumbnails[extension])
         activity['details'] = 'Editing a {} file'.format(thumbnails[extension])
