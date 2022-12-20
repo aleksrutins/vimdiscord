@@ -71,7 +71,10 @@ def get_extension():
 
 
 def get_cwd():
-    return vim.eval('getcwd()')
+    if vim.eval('g:vimdiscord_full_path') == 1:
+        return vim.eval('getcwd()')
+    else:
+        return vim.eval('getcwd()').split('/')[-1]
 
 
 def update_presence(connection):

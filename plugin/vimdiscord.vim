@@ -8,6 +8,7 @@ endif
 if exists('g:vimdiscord')
     finish
 endif
+
 let g:vimdiscord = 1
 
 let s:plugin_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
