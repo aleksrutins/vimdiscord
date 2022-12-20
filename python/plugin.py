@@ -93,7 +93,7 @@ def update_presence(connection):
     if not filename or not cwd:
         return
 
-    activity['details'] = 'Editing a .' + get_extension() + ' file'
+    activity['details'] = 'Editing ' + get_filename()
     activity['assets']['small_text'] = 'Working on project ' + cwd
 
     extension = get_extension()
@@ -104,9 +104,7 @@ def update_presence(connection):
             activity['assets']['large_image'] = extension
         activity['assets']['large_text'] = \
             'Editing a {} file'.format(thumbnails[extension])
-        activity['details'] = 'Editing a {} file'.format(thumbnails[extension])
     else:
-        activity['details'] = 'Editing a .{} file'.format(extension)
         activity['assets']['large_image'] = 'unknown'
 
     try:
