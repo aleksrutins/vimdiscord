@@ -44,6 +44,7 @@ thumbnails = {
     'ex': 'Elixir',
     'md': 'Markdown',
     'ts': 'TypeScript',
+    'tsx': 'TypeScript',
     'go': 'Go',
     'kt': 'Kotlin',
     'kts': 'Kotlin',
@@ -88,14 +89,15 @@ def update_presence(connection):
     cwd = get_cwd()
     if not filename or not cwd:
         return
-    
-    activity['details'] = 'Editing a .' + get_extension() +' file'
+
+    activity['details'] = 'Editing a .' + get_extension() + ' file'
     activity['assets']['small_text'] = 'Working on project ' + cwd
 
     extension = get_extension()
     if extension and extension in thumbnails.keys():
         activity['assets']['large_image'] = extension
-        activity['assets']['large_text'] = 'Editing a {} file'.format(thumbnails[extension])
+        activity['assets']['large_text'] = \
+            'Editing a {} file'.format(thumbnails[extension])
         activity['details'] = 'Editing a {} file'.format(thumbnails[extension])
     else:
         activity['details'] = 'Editing a .{} file'.format(extension)
